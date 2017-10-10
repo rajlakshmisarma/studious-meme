@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class RemoveDuplicates {
 
-	public boolean contains(int newarray[], int originalarrayelement)
+	private boolean contains(int newarray[], int originalarrayelement)
 	{
 		int len = newarray.length;
 		for(int i=0; i<len; i++)
