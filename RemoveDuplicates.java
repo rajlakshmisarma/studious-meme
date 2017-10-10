@@ -4,42 +4,58 @@ import java.util.Arrays;
 
 public class RemoveDuplicates {
 
+	public boolean contains(int newarray[], int originalarrayelement)
+	{
+		int len = newarray.length;
+		for(int i=0; i<len; i++)
+		{
+			if(originalarrayelement==newarray[i])
+			{
+				return true;
+			}
+			else
+			{
+				continue;
+			}
+		}
+		return false;		
+	}
 	public void rmvdup(int arr[])
 	{
-		int[] originalarray = arr;
-		int len = originalarray.length;
-		System.out.println("original array with duplicates: ");
+		int len = arr.length;
+		int[] newarray = new int[len];
+		int index=0;
 		for(int i=0; i<len; i++)
 		{
-			System.out.print(originalarray[i] + " ");
-		}
-		System.out.println();
-		for(int i=0; i<len; i++)
-		{
-			for(int j=i+1; j<len; j++)
+			if(contains(newarray, arr[i])==false)
 			{
-				if(arr[i]==arr[j])
-				{
-					arr[j] = arr[len-1];
-					len--;
-					j--;
-				}
-							
-			}	
+				newarray[index] = arr[i];
+				index++;
+			}
+			else
+			{
+				continue;
+			}
 		}
-		int[] newarray = Arrays.copyOf(originalarray, len);
-		System.out.println("Array without duplicates: ");
+		newarray = Arrays.copyOf(newarray, index);
 		for(int i=0; i<newarray.length; i++)
 		{
 			System.out.print(newarray[i] + " ");
 		}
-	}		
+	}	
+	
 	public static void main(String[] args) {
 		RemoveDuplicates obj = new RemoveDuplicates();
 		int[] array = {3,7,1,8,2,7,1,9,2,3,7,4,6};
+		System.out.println("Original array:");
+		for(int i=0; i<array.length; i++)
+		{
+			System.out.print(array[i] + " ");
+		}
+		System.out.println();
+		System.out.println("Array without duplicates:");
 		obj.rmvdup(array);
 		System.out.println();
 
 	}
-
 }
