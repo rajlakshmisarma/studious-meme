@@ -38,7 +38,8 @@ public class RemoveDuplicates {
 			}
 		}
 		newarray = Arrays.copyOf(newarray, index);
-		for(int i=0; i<newarray.length; i++)
+		int newlen = newarray.length;
+		for(int i=0; i<newlen; i++)
 		{
 			System.out.print(newarray[i] + " ");
 		}
@@ -47,8 +48,9 @@ public class RemoveDuplicates {
 	public static void main(String[] args) {
 		RemoveDuplicates obj = new RemoveDuplicates();
 		int[] array = {3,7,1,8,2,7,1,9,2,3,7,4,6};
+		int length = array.length;
 		System.out.println("Original array:");
-		for(int i=0; i<array.length; i++)
+		for(int i=0; i<length; i++)
 		{
 			System.out.print(array[i] + " ");
 		}
