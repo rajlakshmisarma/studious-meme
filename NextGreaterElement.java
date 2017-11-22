@@ -88,7 +88,7 @@ public class NextGreaterElement {
 		st.push(array[0]); //push the first element into the stack
 		for(int i=1; i<len; i++) //iterate over rest of elements
 		{
-			nextgreater = array[i]; //mark current elements as next
+			nextgreater = array[i]; //mark current element as next
 			if(st.isEmpty()==false)
 			{
 				element = st.pop(); //if the stack is not empty, pop an element from the stack
