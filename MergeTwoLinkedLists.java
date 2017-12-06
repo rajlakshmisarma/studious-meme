@@ -1,13 +1,9 @@
 package programs;
-
 public class MergeTwoLinkedLists {
-
 	//Node class
-	public class Node{
-		  
+	public class Node{  
 		 private int data;
 		 private Node next;
-		 //Node constructor 
 		 public Node(int data) {
 		  this.data = data;
 		 }
@@ -35,64 +31,51 @@ public class MergeTwoLinkedLists {
 			}
 			System.out.print("null");
 		}
-		
-		//function to add nodes to the end of the linked list
-		public void addNodeAtEnd(Node node)
-		{
-			//Node head = null;
-			Node temp = node;
-				while(temp.getNext()!=null)
-				{
-					temp.setNext(node);
-					temp = temp.getNext();				
-				}		
-		}
-		
+			
 		//Function to merge the 2 sorted linked lists into a single linked list
 	public Node mergelinkedlists(Node currentnode1, Node currentnode2)
-	{
+	{		
+		Node mergedlist= null;
+		Node temp;
 		if(currentnode1==null) return currentnode2;
 		if(currentnode2==null) return currentnode1;
-		Node mergedlisthead = null;
-		Node temp;
 		
-			if(currentnode1.getData() < currentnode2.getData())
+			if(currentnode1.getData() < currentnode2.getData())  //the very first addition of a node to the merged list after compare
 			{
-				mergedlisthead = currentnode1;
-				addNodeAtEnd(currentnode1);
+				mergedlist = currentnode1;
 				currentnode1 = currentnode1.getNext();
 			}
 			else if(currentnode1.getData() > currentnode2.getData())
 			{
-				mergedlisthead = currentnode2;
-				addNodeAtEnd(currentnode2);
+				mergedlist = currentnode2;
 				currentnode2 = currentnode2.getNext();
 			}
-			temp = mergedlisthead;
-			while(currentnode1.getNext()!=null && currentnode2.getNext()!=null)
+			temp = mergedlist;   //keep track of the head of the merged list
+			while(currentnode1!=null && currentnode2!=null)   //after the first addition, iterate over both the lists and add to the merged list after compare
 			{
 				if(currentnode1.getData() < currentnode2.getData())
 				{
-					addNodeAtEnd(currentnode1);
+					mergedlist.setNext(currentnode1);
 					currentnode1 = currentnode1.getNext();
 				}
 				else if(currentnode1.getData() > currentnode2.getData())
 				{
-					addNodeAtEnd(currentnode2);
+					mergedlist.setNext(currentnode2);
 					currentnode2 = currentnode2.getNext();
 				}
-				temp = temp.getNext();
+				mergedlist = mergedlist.getNext();
 			}
-			while(currentnode1!=null)
+			if(currentnode1!=null)  //if any remaining nodes in list1, just keep adding to the merged list
 			{
-				addNodeAtEnd(currentnode1);
+				mergedlist.setNext(currentnode1);
 			}
-			while(currentnode2!=null)
+			if(currentnode2!=null)  //if any remaining nodes in list2, just keep adding to the merged list
 			{
-				addNodeAtEnd(currentnode2);
+				mergedlist.setNext(currentnode2);
 			}
-		return temp;
+			return temp;  //return head of the merged list
 	}
+	
 	public static void main(String[] args) {
 		MergeTwoLinkedLists obj = new MergeTwoLinkedLists();
 		Node list1node1 = obj.new Node(5);
@@ -103,15 +86,21 @@ public class MergeTwoLinkedLists {
 		Node list2node2 = obj.new Node(3);
 		Node list2node3 = obj.new Node(20);
 		Node head1 = list1node1;
-		Node head2 = list2node2;
+		Node head2 = list2node1;
 		list1node1.setNext(list1node2);
 		list1node2.setNext(list1node3);
 		list1node3.setNext(list1node4);
 		list2node1.setNext(list2node2);
 		list2node2.setNext(list2node3);
 		
+		System.out.println("First sorted linked list: ");
+		obj.printlinkedlist(head1);
+		System.out.println();
+		System.out.println("Second sorted linked list: ");
+		obj.printlinkedlist(head2);
+		System.out.println();
 		Node mergedhead = obj.mergelinkedlists(head1, head2);
+		System.out.println("Merged linked list:" );
 		obj.printlinkedlist(mergedhead);
 	}
-
 }
