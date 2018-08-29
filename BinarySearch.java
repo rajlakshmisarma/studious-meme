@@ -9,7 +9,7 @@ public class BinarySearch {
 		int high = array.length-1;		
 		while(low <= high)
 		{
-			int mid = low + ((high-low)/2);
+			int mid = low + ((high-low)/2); //this is done because mid=(low+high)/2 may result in integer overflow for huge arrays
 			if(key==array[mid])
 			{
 				System.out.println("Key " + key + " found at position: " + (mid+1));
